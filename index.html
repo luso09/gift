@@ -2,13 +2,13 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <title>카카오톡 공유 테스트</title>
+  <title>공유 테스트</title>
   <!-- 1. 카카오 SDK 추가 -->
   <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 </head>
 <body>
   <!-- 2. 공유 버튼 추가 -->
-  <button id="kakao-share-btn">카카오톡으로 공유하기</button>
+  <button id="kakao-share-btn">카카오톡 공유하기</button>
 
   <!-- 3. 공유 기능 동작 스크립트 -->
   <script>
@@ -20,8 +20,8 @@
       Kakao.Share.sendDefault({
         objectType: 'feed',
         content: {
-          title: '케이크',
-          description: '선물하기',
+          title: '카카오톡',
+          description: '케이크 선물하기',
           imageUrl: 'https://via.placeholder.com/300',
           link: {
             mobileWebUrl: 'https://youtube.com/shorts/4N_byjxhnAs?si=FXJ2VrwwgfsTLrCf',
