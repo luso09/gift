@@ -1,44 +1,44 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <title>공유 테스트</title>
-  <!-- 1. 카카오 SDK 추가 -->
-  <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+<meta charset="UTF-8">
+<title>카카오톡 공유 테스트</title>
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 </head>
 <body>
-  <!-- 2. 공유 버튼 추가 -->
-  <button id="kakao-share-btn">카카오톡 공유하기</button>
 
-  <!-- 3. 공유 기능 동작 스크립트 -->
-  <script>
-    // 카카오 SDK 초기화 (여기에 본인 JavaScript 키 입력)
-    Kakao.init('05894f0ca67db3d7b340520c98cfd83d');
+<!-- 공유 버튼 -->
+<button id="kakao-link-btn" style="padding:10px 20px; font-size:16px;">카카오톡 공유</button>
 
-    // 버튼 클릭 시 공유 동작
-    document.getElementById('kakao-share-btn').onclick = function() {
-      Kakao.Share.sendDefault({
-        objectType: 'feed',
-        content: {
-          title: '뚜레쥬르',
-          description: '스트로베리 케이크',
-          imageUrl: 'https://lrl.kr/bCEko',
-          link: {
-            mobileWebUrl: 'https://www.youtube.com/watch?v=QjOltv586PM',
-            webUrl: 'https://www.youtube.com/watch?v=QjOltv586PM'
-          }
-        },
-        buttons: [
-          {
-            title: '선물 받기',
-            link: {
-              mobileWebUrl: 'https://www.youtube.com/watch?v=QjOltv586PM',
-              webUrl: 'https://www.youtube.com/watch?v=QjOltv586PM'
-            }
-          }
-        ]
-      });
-    }
-  </script>
+<script>
+  // 1️⃣ Kakao JavaScript 키 설정
+  // Kakao Developers에서 발급받은 JavaScript 키로 바꿔주세요
+  Kakao.init('a617e64c996d7ce4870d5102a200c807');
+
+  // 2️⃣ 공유 버튼 설정
+  Kakao.Link.createDefaultButton({
+    container: '#kakao-link-btn',
+    objectType: 'feed',  // 카드형 공유
+    content: {
+      title: 'GitHub 이미지 공유',
+      description: 'Raw 이미지를 올바르게 공유합니다.',
+      imageUrl: 'https://raw.githubusercontent.com/Lis433/JKW/main/Screenshot_20251010_131130_KakaoTalk.jpg', // Raw 이미지 URL
+      link: {
+        mobileWebUrl: 'https://github.com/Lis433/JKW',
+        webUrl: 'https://github.com/Lis433/JKW'
+      }
+    },
+    buttons: [
+      {
+        title: 'GitHub 바로가기',
+        link: {
+          mobileWebUrl: 'https://github.com/Lis433/JKW',
+          webUrl: 'https://github.com/Lis433/JKW'
+        }
+      }
+    ]
+  });
+</script>
+
 </body>
 </html>
