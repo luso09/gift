@@ -1,44 +1,50 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8">
-<title>카카오톡 공유 테스트</title>
-<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+  <meta charset="utf-8">
+  <title>Kakao 공유 테스트</title>
+  <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+  <script>
+    // ✅ 0. URL 파라미터 확인 후 자동 리다이렉트
+    const params = new URLSearchParams(window.location.search);
+    const redirectUrl = params.get('url');
+    if (redirectUrl) {
+      // 카카오 공유를 실행하지 않고 바로 이동해야 하는 경우
+      if (!window.location.href.includes('kakaoShare')) {
+        window.location.href = redirectUrl;
+      }
+    }
+
+    // ✅ 1. Kakao SDK 초기화
+    Kakao.init('152350fa270320b360fb817a0edc16f0');
+
+    // ✅ 2. 공유 함수 정의
+    function sendLink() {
+      Kakao.Link.sendDefault({
+        objectType: 'feed',
+        content: {
+          title: '달해♥️',
+          description: '달해를 받으시겠습니까 ?',
+          imageUrl: 'https://luso09.github.io/kakaolink2/miku.png',
+          link: {
+            mobileWebUrl: 'https://lrl.kr/gmEoi',
+            webUrl: 'https://lrl.kr/gmEoi',
+          },
+        },
+        buttons: [
+          {
+            title: '미쿠 음악 듣기',
+            link: {
+              mobileWebUrl: 'https://lrl.kr/gmEoi',
+              webUrl: 'https://lrl.kr/gmEoi',
+            },
+          },
+        ],
+      });
+    }
+  </script>
 </head>
 <body>
-
-<!-- 공유 버튼 -->
-<button id="kakao-link-btn" style="padding:10px 20px; font-size:16px;">카카오톡 공유</button>
-
-<script>
-  // 1️⃣ Kakao JavaScript 키 설정
-  // Kakao Developers에서 발급받은 JavaScript 키로 바꿔주세요
-  Kakao.init('a617e64c996d7ce4870d5102a200c807');
-
-  // 2️⃣ 공유 버튼 설정
-  Kakao.Link.createDefaultButton({
-    container: '#kakao-link-btn',
-    objectType: 'feed',  // 카드형 공유
-    content: {
-      title: 'GitHub 이미지 공유',
-      description: 'Raw 이미지를 올바르게 공유합니다.',
-      imageUrl: 'https://raw.githubusercontent.com/Lis433/JKW/main/Screenshot_20251010_131130_KakaoTalk.jpg', // Raw 이미지 URL
-      link: {
-        mobileWebUrl: 'https://github.com/Lis433/JKW',
-        webUrl: 'https://github.com/Lis433/JKW'
-      }
-    },
-    buttons: [
-      {
-        title: 'GitHub 바로가기',
-        link: {
-          mobileWebUrl: 'https://github.com/Lis433/JKW',
-          webUrl: 'https://github.com/Lis433/JKW'
-        }
-      }
-    ]
-  });
-</script>
-
+  <button onclick="sendLink()">카카오톡으로 공유</button>
 </body>
 </html>
